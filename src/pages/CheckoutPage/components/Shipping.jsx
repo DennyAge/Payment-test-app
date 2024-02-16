@@ -41,7 +41,7 @@ const Shipping = ( { activeTab, onChangePage, checkoutData, onChangeData } ) => 
         <Form>
           <Header activeTab={activeTab} />
           <div className="left-top-row w-100 d-flex flex-wrap justify-content-between">
-            <div className="checkout-title flex-auto">
+            <div className="checkout-title flex-auto ">
               Contact
             </div>
             <div className="email-box w-100 d-block">
@@ -54,8 +54,8 @@ const Shipping = ( { activeTab, onChangePage, checkoutData, onChangeData } ) => 
               />
               <ErrorMessage
                 name="email"
-                component="div"
-                className="error"
+                component="span"
+                className="text-xs text-red-500"
               />
               <div className="checkbox-row w-100 d-block">
                 <label className="control control-checkbox">
