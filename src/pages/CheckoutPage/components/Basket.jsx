@@ -25,7 +25,7 @@ const Basket = () => {
           className="form-control checkout"
           placeholder="Discount code"
         />
-        <button>
+        <button onClick={() => alert( 'Apply Discount' )}>
           Apply
         </button>
       </div>
