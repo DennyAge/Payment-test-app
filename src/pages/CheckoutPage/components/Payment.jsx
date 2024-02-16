@@ -41,6 +41,14 @@ const Payment = ( { activeTab, onChangePage, paymentData, shippingData,  onChang
     setDifferentBilling( newValue );
     formik.setFieldValue( 'billingAddress', newValue ? 'different' : 'same' );
   };
+  const changeShipTo = ( event ) => {
+    event.preventDefault();
+    return  console.log( 'Change Shipping To' );
+  };
+  const changeShippingMethod = ( event ) => {
+    event.preventDefault();
+    return  console.log( 'Change Shipping method' );
+  };
 
   return (
     <Formik
@@ -60,8 +68,8 @@ const Payment = ( { activeTab, onChangePage, paymentData, shippingData,  onChang
           <div className="payment-top w-100 d-block">
             <ul>
               <PaymentInfoItem label="Contact" value={shippingData.email} text="Change" onClick={() => onChangePage( 'shipping' )}/>
-              <PaymentInfoItem label="Ship to" text="Change" onClick={() => console.log( 'Change Ship to' )}/>
-              <PaymentInfoItem label="Shipping method" value="Standard" text="Change" onClick={() => console.log( 'Change Shipping method' )}/>
+              <PaymentInfoItem label="Ship to" text="Change" onClick={changeShipTo}/>
+              <PaymentInfoItem label="Shipping method" value="Standard" text="Change" onClick={changeShippingMethod}/>
             </ul>
           </div>
           <div className="payment-card-section w-100 d-block">
