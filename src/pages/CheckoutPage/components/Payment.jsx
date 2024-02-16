@@ -60,8 +60,8 @@ const Payment = ( { activeTab, onChangePage, paymentData, shippingData,  onChang
           <div className="payment-top w-100 d-block">
             <ul>
               <PaymentInfoItem label="Contact" value={shippingData.email} text="Change" onClick={() => onChangePage( 'shipping' )}/>
-              <PaymentInfoItem label="Ship to" text="Change" onClick={() => null}/>
-              <PaymentInfoItem label="Shipping method" value="Standard" text="Change" onClick={() => null}/>
+              <PaymentInfoItem label="Ship to" text="Change" onClick={() => console.log( 'Change Ship to' )}/>
+              <PaymentInfoItem label="Shipping method" value="Standard" text="Change" onClick={() => console.log( 'Change Shipping method' )}/>
             </ul>
           </div>
           <div className="payment-card-section w-100 d-block">
