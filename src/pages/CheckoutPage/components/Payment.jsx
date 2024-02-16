@@ -111,7 +111,7 @@ const Payment = ( { activeTab, onChangePage, checkoutData, onChangeData } ) => {
           </div>
           <div className="btn-row w-100 d-flex justify-content-between">
             <div className="back-link" onClick={() => onChangePage( 'shipping' )}>
-              <a href="#">
+              <a href="#" className='d-flex'>
                 <ChevronLeftIcon/>
                 Return to shipping
               </a>
