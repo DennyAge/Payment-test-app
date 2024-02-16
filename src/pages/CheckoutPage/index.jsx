@@ -64,6 +64,7 @@ const CheckoutPage = () => {
     setShippingData( data );
   };
   const handleBasketDataChange = ( data ) => {
+    alert( 'discount code add' );
     setBasketData( data );
   };
   const handlePaymentDataChange = ( data ) => {
@@ -106,7 +107,12 @@ const CheckoutPage = () => {
             ) }
           </div>
         }
-        rightSide={ <Basket basketData={basketData} onChangeData={handleBasketDataChange}/> }
+        rightSide={
+          <Basket
+            basketData={basketData}
+            onChangeData={handleBasketDataChange}
+          />
+        }
         footer={<Footer/>}
       />
     </div>
