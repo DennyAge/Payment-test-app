@@ -8,32 +8,32 @@ import CardForm from '../../../components/CardForm';
 import PaymentInfoItem from '../../../components/PaymentInfoItem';
 import ChevronLeftIcon from '../../../components/Icons/ChevronLeftIcon';
 
-const Payment = ( { activeTab, onChangePage, checkoutData, onChangeData } ) => {
+const Payment = ( { activeTab, onChangePage, paymentData, shippingData,  onChangeData, handleSendPayment } ) => {
   const initialValues = {
-    cardNumber: checkoutData.cardNumber || '',
-    name: checkoutData.name || '',
-    expiration: checkoutData.expiration || '',
-    securityCode: checkoutData.securityCode || '',
-    billingFirstName: checkoutData.billingFirstName || '',
-    billingLastName: checkoutData.billingLastName || '',
-    billingAddress: checkoutData.billingAddress || '',
-    billingApartment: checkoutData.billingApartment || '',
-    billingCity: checkoutData.billingCity || '',
-    billingState: checkoutData.billingState || '',
-    billingZipCode: checkoutData.billingZipCode || '',
-    billingPhone: checkoutData.billingPhone || '',
-    country: checkoutData.country || '',
-    firstName: checkoutData.firstName || '',
-    lastName: checkoutData.lastName || '',
-    address: checkoutData.address || '',
-    apartment: checkoutData.apartment || '',
-    city: checkoutData.city || '',
-    state: checkoutData.state || '',
-    zipCode: checkoutData.zipCode || '',
-    phone: checkoutData.phone || '',
+    cardNumber: paymentData.cardNumber || '',
+    name: paymentData.name || '',
+    expiration: paymentData.expiration || '',
+    securityCode: paymentData.securityCode || '',
+    billingFirstName: paymentData.billingFirstName || '',
+    billingLastName: paymentData.billingLastName || '',
+    billingAddress: paymentData.billingAddress || '',
+    billingApartment: paymentData.billingApartment || '',
+    billingCity: paymentData.billingCity || '',
+    billingState: paymentData.billingState || '',
+    billingZipCode: paymentData.billingZipCode || '',
+    billingPhone: paymentData.billingPhone || '',
+    country: paymentData.country || '',
+    firstName: paymentData.firstName || '',
+    lastName: paymentData.lastName || '',
+    address: paymentData.address || '',
+    apartment: paymentData.apartment || '',
+    city: paymentData.city || '',
+    state: paymentData.state || '',
+    zipCode: paymentData.zipCode || '',
+    phone: paymentData.phone || '',
   };
 
-  const initialBillingAddress = checkoutData.billingAddress || 'same';
+  const initialBillingAddress = paymentData.billingAddress || 'same';
   const [ differentBilling, setDifferentBilling ] = useState( initialBillingAddress === 'different' );
 
   const handleBillingChange = ( formik, event ) => {
@@ -50,7 +50,7 @@ const Payment = ( { activeTab, onChangePage, checkoutData, onChangeData } ) => {
       }}
       onSubmit={( values, { setSubmitting } ) => {
         setSubmitting( false );
-        alert( 'Payment send' );
+        handleSendPayment();
         // onChangePage('confirmation');
       }}
     >
@@ -59,9 +59,9 @@ const Payment = ( { activeTab, onChangePage, checkoutData, onChangeData } ) => {
           <Header activeTab={activeTab} />
           <div className="payment-top w-100 d-block">
             <ul>
-              <PaymentInfoItem label="Contact" text="Change" />
-              <PaymentInfoItem label="Ship to" text="Change" />
-              <PaymentInfoItem label="Shipping method" text="Standard" />
+              <PaymentInfoItem label="Contact" value={shippingData.email} text="Change" onClick={() => onChangePage( 'shipping' )}/>
+              <PaymentInfoItem label="Ship to" text="Change" onClick={() => null}/>
+              <PaymentInfoItem label="Shipping method" value="Standard" text="Change" onClick={() => null}/>
             </ul>
           </div>
           <div className="payment-card-section w-100 d-block">
@@ -129,8 +129,10 @@ const Payment = ( { activeTab, onChangePage, checkoutData, onChangeData } ) => {
 Payment.propTypes = {
   activeTab: PropTypes.string,
   onChangePage: PropTypes.func,
-  checkoutData: PropTypes.object,
+  paymentData: PropTypes.object,
+  shippingData: PropTypes.object,
   onChangeData: PropTypes.func,
+  handleSendPayment: PropTypes.func,
 };
 
 export default Payment;

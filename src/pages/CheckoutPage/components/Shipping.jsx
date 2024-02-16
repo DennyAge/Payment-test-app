@@ -6,19 +6,19 @@ import PropTypes from 'prop-types';
 import Header from './Header';
 import AddressForm from '../../../components/AddressForm';
 
-const Shipping = ( { activeTab, onChangePage, checkoutData, onChangeData } ) => {
+const Shipping = ( { activeTab, onChangePage, shippingData, onChangeData } ) => {
   const initialValues = {
-    country: checkoutData.country || '',
-    email: checkoutData.email || '',
-    subscribe: checkoutData.subscribe || '',
-    firstName: checkoutData.firstName || '',
-    lastName: checkoutData.lastName || '',
-    address: checkoutData.address || '',
-    apartment: checkoutData.apartment || '',
-    city: checkoutData.city || '',
-    state: checkoutData.state || '',
-    zipCode: checkoutData.zipCode || '',
-    phone: checkoutData.phone || ''
+    country: shippingData.country || '',
+    email: shippingData.email || '',
+    subscribe: shippingData.subscribe || '',
+    firstName: shippingData.firstName || '',
+    lastName: shippingData.lastName || '',
+    address: shippingData.address || '',
+    apartment: shippingData.apartment || '',
+    city: shippingData.city || '',
+    state: shippingData.state || '',
+    zipCode: shippingData.zipCode || '',
+    phone: shippingData.phone || ''
   };
 
   const validationSchema = Yup.object( {
@@ -29,6 +29,7 @@ const Shipping = ( { activeTab, onChangePage, checkoutData, onChangeData } ) => 
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
+      validateOnChange={true}
       validate={( values ) => {
         onChangeData( values );
       }}
@@ -79,7 +80,7 @@ const Shipping = ( { activeTab, onChangePage, checkoutData, onChangeData } ) => 
                 <button
                   type="submit"
                   className="checkout-btn"
-                  disabled={formik.isSubmitting}
+                  disabled={formik.isSubmitting || !formik.isValid }
                 >
                   Continue to payment
                 </button>
@@ -95,7 +96,7 @@ const Shipping = ( { activeTab, onChangePage, checkoutData, onChangeData } ) => 
 Shipping.propTypes = {
   activeTab: PropTypes.string,
   onChangePage: PropTypes.func,
-  checkoutData: PropTypes.object,
+  shippingData: PropTypes.object,
   onChangeData: PropTypes.func,
 };
 
